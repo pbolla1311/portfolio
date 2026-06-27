@@ -1,0 +1,12 @@
+# Original watermarked photo — only clean photo.jpg is committed
+photo.png
+
+# macOS junk
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+
+# Editor folders
+.vscode/
+.idea/
