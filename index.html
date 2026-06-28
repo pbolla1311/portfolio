@@ -309,6 +309,26 @@ nav.on{background:rgba(5,5,14,.85);backdrop-filter:blur(24px) saturate(1.5);-web
 .bli{width:36px;height:36px;border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;transition:all .2s}
 .bl:hover .bli{border-color:var(--border2);background:rgba(255,255,255,.04)}
 
+/* BEYOND THE CODE */
+.life-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-top:52px}
+.life-text .st{margin-bottom:28px}
+.life-prose{font-size:17px;line-height:1.85;color:var(--t2);font-family:'Inter',sans-serif}
+.life-prose p{margin-bottom:20px}
+.life-prose p:last-child{margin-bottom:0}
+.life-prose strong{color:var(--t1);font-weight:600}
+.life-prose em{color:var(--accent3);font-style:normal}
+.life-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.life-tag{padding:6px 14px;border:1px solid var(--border2);border-radius:50px;font-size:12px;font-family:var(--mono);color:var(--t3);transition:all .2s}
+.life-tag:hover{border-color:var(--accent);color:var(--accent)}
+.photos-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.photo-card{border-radius:16px;overflow:hidden;position:relative;aspect-ratio:3/4;cursor:default}
+.photo-card img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .6s cubic-bezier(.16,1,.3,1),filter .4s}
+.photo-card:hover img{transform:scale(1.06);filter:brightness(1.05)}
+.photo-card::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,14,.5),transparent 50%);pointer-events:none}
+.photo-card .photo-caption{position:absolute;bottom:14px;left:14px;right:14px;font-size:11px;font-family:var(--mono);color:rgba(255,255,255,.6);letter-spacing:.5px;z-index:1}
+.photo-card.tall{grid-row:span 2;aspect-ratio:auto}
+.photo-card.tall img{height:100%}
+
 /* FOOTER */
 footer{padding:28px 48px;border-top:1px solid var(--border)}
 .fi2{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between}
@@ -327,6 +347,7 @@ footer{padding:28px 48px;border-top:1px solid var(--border)}
   .aib{grid-template-columns:1fr}
   .ais{border-right:none;border-bottom:1px solid var(--border)}
   .stats-g{grid-template-columns:repeat(2,1fr)}
+  .life-grid{grid-template-columns:1fr;gap:40px}
   nav,.sec,.hero,.build,.stats,.ticker-wrap{padding-left:24px;padding-right:24px}
 }
 @media(max-width:640px){
@@ -554,15 +575,69 @@ footer{padding:28px 48px;border-top:1px solid var(--border)}
       </div>
       <div class="ei">
         <div class="ed"></div>
-        <div class="em"><span class="eco">Prior Role</span><span class="esep">·</span><span class="edt">2019 — 2023</span></div>
-        <div class="er">Data Engineer</div>
-        <ul class="ebl"><li>Details available on request — reach out to discuss</li></ul>
+        <div class="em"><span class="eco">Delta Air Lines · Atlanta, GA</span><span class="esep">·</span><span class="edt">April 2022 — March 2023 · Contract</span></div>
+        <div class="er">Data Engineer / Hadoop Developer</div>
+        <ul class="ebl">
+          <li>Engineered enterprise data pipelines across <strong>GCP (BigQuery, Pub/Sub)</strong> and Hadoop ecosystem — integrated 20+ data sources, accelerating data availability by <strong>70%</strong> and eliminating 2,000+ hours of manual reporting annually</li>
+          <li>Built <strong>graph-based flight search system in Neo4j</strong> — 85% query performance improvement, drove 15% increase in booking efficiency through advanced graph analytics</li>
+          <li>Developed real-time streaming frameworks with <strong>Kafka + Spark Streaming + HBase</strong>, enabling sub-second event ingestion for global operations dashboards</li>
+          <li>Created customer segmentation models with <strong>PySpark and fuzzy matching</strong>, improving personalization and marketing ROI by 22%</li>
+          <li>Designed large-scale ETL/ELT pipelines on <strong>Teradata</strong>, leveraging Teradata SQL, BTEQ scripting, and parallel processing to reduce query runtimes by 30–40%</li>
+          <li>Cost-optimized AWS architecture (EC2, S3, EMR, Lambda, SNS/SQS) handling petabyte-scale data — <strong>saved $800K annually</strong> through storage compression and workload automation</li>
+          <li>Optimized Spark jobs via DAG scheduling and YARN resource allocation — <strong>reduced job failures by 40%</strong> and improved SLA adherence across all pipelines</li>
+          <li>Integrated NiFi with Kafka, Hive, and HDFS for fine-grained monitoring and provenance tracking across enterprise data pipelines</li>
+        </ul>
       </div>
       <div class="ei">
         <div class="ed"></div>
-        <div class="em"><span class="eco">Prior Role</span><span class="esep">·</span><span class="edt">2016 — 2019</span></div>
-        <div class="er">Data Engineer</div>
-        <ul class="ebl"><li>Details available on request — reach out to discuss</li></ul>
+        <div class="em"><span class="eco">Cyient · India</span><span class="esep">·</span><span class="edt">March 2018 — July 2021</span></div>
+        <div class="er">Data Analyst</div>
+        <ul class="ebl">
+          <li>Collaborated with business users, product owners, and developers to analyze functional requirements and translate them into data solutions</li>
+          <li>Implemented <strong>Spark SQL queries</strong> combining Hive with Python programmatic data manipulations supported by RDDs and DataFrames</li>
+          <li>Built and maintained reporting pipelines for business intelligence workloads, supporting analyst and revenue teams</li>
+          <li>Foundation role where the data engineering journey began — moved from analysis to engineering, then to the US</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEYOND THE CODE -->
+<section class="sec" id="life" style="background:var(--bg2)">
+  <div class="sec-in">
+    <div class="ey rv">// Beyond the terminal</div>
+    <div class="life-grid">
+      <div class="rl">
+        <h2 class="st">When the laptop closes,<br/><span class="m">the adventure begins.</span></h2>
+        <div class="life-prose">
+          <p>I grew up in India with a simple belief: <strong>the world is worth seeing.</strong> Since moving to Atlanta in 2018, I've been proving it — one road trip at a time.</p>
+          <p>Chicago's riverfront skyline from a boat. Georgia's Appalachian trails in autumn gold. Gulf Coast beaches at dusk with nothing but water and sky. These aren't escapes from the work — they're part of the same curiosity that drives it.</p>
+          <p>I find the same thing in every landscape that I find in good engineering: <em>elegant systems, deep complexity, and an invitation to keep exploring.</em> The Smoky Mountains and a well-architected data platform have more in common than you'd think.</p>
+          <p>When I'm not building pipelines, I'm usually on a trail, planning the next city, or figuring out how to do both at once.</p>
+        </div>
+        <div class="life-tags">
+          <span class="life-tag">🥾 Hiking</span>
+          <span class="life-tag">✈️ Travelling</span>
+          <span class="life-tag">🌊 Beaches</span>
+          <span class="life-tag">🏙️ City exploration</span>
+          <span class="life-tag">📸 Photography</span>
+          <span class="life-tag">🛣️ Road trips</span>
+        </div>
+      </div>
+      <div class="photos-grid rr">
+        <div class="photo-card tall">
+          <img src="life1.jpg" alt="Chicago river cruise" loading="lazy"/>
+          <div class="photo-caption">Chicago, IL</div>
+        </div>
+        <div class="photo-card">
+          <img src="life2.jpg" alt="Beach" loading="lazy"/>
+          <div class="photo-caption">Gulf Coast</div>
+        </div>
+        <div class="photo-card">
+          <img src="life3.jpg" alt="Appalachian trail" loading="lazy"/>
+          <div class="photo-caption">Appalachian Trail, GA</div>
+        </div>
       </div>
     </div>
   </div>
