@@ -38,6 +38,17 @@ img{display:block;max-width:100%}
 button{cursor:pointer;border:none;background:none;font-family:inherit}
 ::selection{background:rgba(99,102,241,.3);color:#fff}
 
+/* ═══════════════════════════════════ PAGE LOADER */
+#loader{position:fixed;inset:0;z-index:99999;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;transition:clip-path 1s cubic-bezier(.76,0,.24,1)}
+#loader.exit{clip-path:polygon(0 0,100% 0,100% 0,0 0)!important}
+.loader-logo{width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--purple));display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;color:#fff;margin-bottom:28px;opacity:0;transform:scale(.7);animation:lIn .5s .1s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes lIn{to{opacity:1;transform:scale(1)}}
+.loader-name{font-size:22px;font-weight:700;letter-spacing:-0.5px;color:var(--t1);margin-bottom:6px;opacity:0;animation:lIn .5s .3s cubic-bezier(.16,1,.3,1) forwards}
+.loader-title{font-size:12px;font-family:var(--mono);color:var(--t3);letter-spacing:2px;text-transform:uppercase;margin-bottom:40px;opacity:0;animation:lIn .5s .45s cubic-bezier(.16,1,.3,1) forwards}
+.loader-track{width:200px;height:1px;background:rgba(255,255,255,.08);border-radius:1px;overflow:hidden;opacity:0;animation:lIn .4s .6s ease forwards}
+.loader-bar-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--accent),var(--purple));transition:width .05s linear;box-shadow:0 0 12px var(--accent)}
+.loader-pct{font-size:11px;font-family:var(--mono);color:var(--t4);margin-top:12px;letter-spacing:1px;opacity:0;animation:lIn .4s .6s ease forwards}
+
 /* GRAIN OVERLAY */
 body::before{content:'';position:fixed;inset:0;z-index:1000;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");opacity:.025;mix-blend-mode:overlay}
 
@@ -216,23 +227,22 @@ nav.on{background:rgba(5,5,14,.85);backdrop-filter:blur(24px) saturate(1.5);-web
 .wd{font-size:13px;color:var(--t3);font-family:'Inter',sans-serif;line-height:1.65;position:relative;z-index:1}
 .wcs{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px;position:relative;z-index:1}
 
-/* SKILLS */
-.skc{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;margin-bottom:36px}
-.fr{display:flex;flex-wrap:wrap;gap:8px}
-.fb{padding:7px 16px;border:1px solid var(--border);background:transparent;color:var(--t3);border-radius:50px;font-size:12px;font-family:var(--mono);transition:all .2s;cursor:pointer;letter-spacing:.3px}
-.fb.on,.fb:hover{border-color:var(--accent);color:var(--accent);background:rgba(99,102,241,.08)}
-.sks{padding:10px 18px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:50px;color:var(--t1);font-size:13px;font-family:'Inter',sans-serif;outline:none;width:240px;transition:border-color .2s}
-.sks:focus{border-color:var(--accent)}
-.sks::placeholder{color:var(--t4)}
-.skg{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
-.ski{background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:12px;padding:14px 18px;transition:all .3s}
-.ski:hover{border-color:var(--border2);transform:translateX(4px)}
-.ski.hide{display:none}
-.skt{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-.skn{font-size:13px;font-weight:600;color:var(--t1)}
-.skp{font-size:11px;font-family:var(--mono);color:var(--accent2)}
-.skb{height:2px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden}
-.skf{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--accent),var(--purple));box-shadow:0 0 8px rgba(99,102,241,.4);transition:width 1.2s cubic-bezier(.16,1,.3,1)}
+/* SKILLS GLOBE */
+.globe-scene{position:relative;width:min(580px,calc(100vw - 40px));height:min(580px,calc(100vw - 40px));margin:60px auto 0;cursor:grab;flex-shrink:0}
+.globe-scene:active{cursor:grabbing}
+.globe-orb{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 30% 26%,rgba(255,255,255,.07) 0%,rgba(99,102,241,.06) 35%,rgba(168,85,247,.04) 60%,transparent 75%);border:1px solid rgba(255,255,255,.09);box-shadow:0 0 90px rgba(99,102,241,.1),0 0 40px rgba(168,85,247,.05),inset 0 0 60px rgba(99,102,241,.05);pointer-events:none}
+.globe-orb::before{content:'';position:absolute;top:8%;left:12%;width:26%;height:20%;border-radius:50%;background:radial-gradient(ellipse,rgba(255,255,255,.2) 0%,transparent 70%);filter:blur(5px)}
+.globe-orb::after{content:'';position:absolute;inset:14px;border-radius:50%;border:1px solid rgba(255,255,255,.04)}
+.globe-meridian{position:absolute;inset:0;border-radius:50%;border:1px dashed rgba(99,102,241,.06);pointer-events:none}
+.globe-meridian:nth-child(2){transform:rotateY(60deg)}
+.globe-meridian:nth-child(3){transform:rotateY(120deg)}
+.globe-equator{position:absolute;top:50%;left:50%;width:100%;height:1px;border-top:1px dashed rgba(99,102,241,.07);transform:translate(-50%,-50%);pointer-events:none}
+.globe-tags{position:absolute;inset:0;border-radius:50%;overflow:visible}
+.stag{position:absolute;top:50%;left:50%;border-radius:50px;font-size:11px;font-family:var(--mono);font-weight:600;letter-spacing:.4px;white-space:nowrap;pointer-events:none;will-change:transform,opacity;padding:5px 13px;border:1px solid transparent;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.globe-legend{display:flex;flex-wrap:wrap;gap:12px 20px;justify-content:center;margin-top:44px}
+.gl-item{display:flex;align-items:center;gap:7px;font-size:11px;font-family:var(--mono);color:var(--t3);letter-spacing:.3px;text-transform:lowercase}
+.gl-swatch{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.globe-hint{text-align:center;font-size:10px;font-family:var(--mono);color:var(--t4);letter-spacing:1.5px;text-transform:uppercase;margin-top:18px;opacity:.6}
 
 /* EXPERIENCE */
 .ebg{background:radial-gradient(ellipse 60% 50% at 50% 100%,rgba(99,102,241,.04),transparent)}
@@ -361,6 +371,15 @@ footer{padding:28px 48px;border-top:1px solid var(--border)}
 </style>
 </head>
 <body>
+
+<!-- PAGE LOADER -->
+<div id="loader" style="clip-path:polygon(0 0,100% 0,100% 100%,0 100%)">
+  <div class="loader-logo">PB</div>
+  <div class="loader-name">Prakhyath Bolla</div>
+  <div class="loader-title">Senior Data Engineer</div>
+  <div class="loader-track"><div class="loader-bar-fill" id="lBar"></div></div>
+  <div class="loader-pct" id="lPct">0%</div>
+</div>
 
 <div id="prog"></div>
 <div class="cur-dot" id="cd"></div>
@@ -535,19 +554,16 @@ footer{padding:28px 48px;border-top:1px solid var(--border)}
   <div class="sec-in">
     <div class="ey rv">03 — Technical Skills</div>
     <h2 class="st rv">The full stack.<br/><span class="m">All of it.</span></h2>
-    <div class="skc rv" style="margin-top:40px">
-      <div class="fr" id="filterRow">
-        <button class="fb on" data-c="all">All</button>
-        <button class="fb" data-c="streaming">Streaming</button>
-        <button class="fb" data-c="cloud">Cloud</button>
-        <button class="fb" data-c="warehouse">Warehouse</button>
-        <button class="fb" data-c="orchestration">Orchestration</button>
-        <button class="fb" data-c="ai">AI / ML</button>
-        <button class="fb" data-c="languages">Languages</button>
-      </div>
-      <input class="sks" id="skSearch" type="text" placeholder="Search tech..." autocomplete="off"/>
+    <div class="globe-scene rv" id="globeScene">
+      <div class="globe-orb"></div>
+      <div class="globe-meridian"></div>
+      <div class="globe-meridian"></div>
+      <div class="globe-meridian"></div>
+      <div class="globe-equator"></div>
+      <div class="globe-tags" id="globeTags"></div>
     </div>
-    <div class="skg rv" id="skGrid"></div>
+    <div class="globe-legend rv" id="globeLegend"></div>
+    <p class="globe-hint rv">Drag to spin &nbsp;·&nbsp; 40 technologies</p>
   </div>
 </section>
 
@@ -705,6 +721,29 @@ footer{padding:28px 48px;border-top:1px solid var(--border)}
 </footer>
 
 <script>
+// PAGE LOADER
+;(function(){
+  const loader=document.getElementById('loader')
+  const bar=document.getElementById('lBar')
+  const pct=document.getElementById('lPct')
+  document.body.style.overflow='hidden'
+  let p=0
+  const iv=setInterval(()=>{
+    const step=p<60?Math.random()*8+3:p<85?Math.random()*4+1:Math.random()*2+.5
+    p=Math.min(p+step,100)
+    bar.style.width=p+'%'
+    pct.textContent=Math.round(p)+'%'
+    if(p>=100){
+      clearInterval(iv)
+      setTimeout(()=>{
+        loader.classList.add('exit')
+        document.body.style.overflow=''
+        setTimeout(()=>loader.remove(),1000)
+      },300)
+    }
+  },60)
+})()
+
 // CURSOR
 const cd=document.getElementById('cd'),cr=document.getElementById('cr')
 let mx=0,my=0,rx=0,ry=0
@@ -753,52 +792,96 @@ if(hmb){
   hmb.addEventListener('mouseleave',()=>hmb.style.transform='')
 }
 
-// SKILLS
-const sd=[
-  {n:'Apache Spark',p:95,c:'streaming'},{n:'Kafka',p:92,c:'streaming'},
-  {n:'Spark Structured Streaming',p:90,c:'streaming'},{n:'Delta Lake',p:88,c:'streaming'},
-  {n:'AWS Glue',p:90,c:'cloud'},{n:'Amazon EMR',p:88,c:'cloud'},
-  {n:'Amazon Redshift',p:86,c:'cloud'},{n:'Amazon S3',p:92,c:'cloud'},
-  {n:'Google BigQuery',p:91,c:'cloud'},{n:'Cloud Dataflow',p:85,c:'cloud'},
-  {n:'Cloud Pub/Sub',p:84,c:'cloud'},{n:'Cloud Composer',p:82,c:'cloud'},
-  {n:'Azure Databricks',p:93,c:'cloud'},{n:'Azure Data Factory',p:88,c:'cloud'},
-  {n:'Azure Synapse',p:86,c:'cloud'},{n:'ADLS Gen2',p:90,c:'cloud'},
-  {n:'Snowflake',p:93,c:'warehouse'},{n:'Snowpipe',p:88,c:'warehouse'},
-  {n:'Snowpark',p:86,c:'warehouse'},{n:'Databricks',p:93,c:'warehouse'},
-  {n:'Apache Hive',p:82,c:'warehouse'},{n:'dbt',p:80,c:'warehouse'},
-  {n:'Apache Airflow',p:95,c:'orchestration'},{n:'Step Functions',p:80,c:'orchestration'},
-  {n:'Terraform',p:84,c:'orchestration'},{n:'Docker',p:86,c:'orchestration'},
-  {n:'Kubernetes',p:78,c:'orchestration'},{n:'Prefect',p:74,c:'orchestration'},
-  {n:'Claude AI',p:92,c:'ai'},{n:'RAG Systems',p:86,c:'ai'},
-  {n:'LLM Integration',p:88,c:'ai'},{n:'ML Feature Stores',p:87,c:'ai'},
-  {n:'MLflow',p:80,c:'ai'},{n:'Scikit-learn',p:78,c:'ai'},
-  {n:'Python',p:96,c:'languages'},{n:'PySpark',p:95,c:'languages'},
-  {n:'SQL',p:93,c:'languages'},{n:'Scala',p:78,c:'languages'},
-  {n:'JavaScript / React',p:80,c:'languages'},{n:'Bash / Shell',p:86,c:'languages'},
-]
-const sg=document.getElementById('skGrid')
-function renderSk(cat='all',q=''){
-  const ql=q.toLowerCase()
-  sg.innerHTML=''
-  sd.filter(s=>(cat==='all'||s.c===cat)&&(!ql||s.n.toLowerCase().includes(ql))).forEach(s=>{
-    const d=document.createElement('div')
-    d.className='ski'
-    d.innerHTML=`<div class="skt"><span class="skn">${s.n}</span><span class="skp">${s.p}%</span></div><div class="skb"><div class="skf" style="width:0%" data-w="${s.p}%"></div></div>`
-    sg.appendChild(d)
-    requestAnimationFrame(()=>requestAnimationFrame(()=>{d.querySelector('.skf').style.width=s.p+'%'}))
+// SKILLS GLOBE
+;(function(){
+  const CC={streaming:'#6366f1',cloud:'#06b6d4',warehouse:'#a855f7',orchestration:'#10b981',ai:'#f59e0b',languages:'#ec4899'}
+  const tags=[
+    {n:'Apache Spark',c:'streaming'},{n:'Kafka',c:'streaming'},{n:'Spark Streaming',c:'streaming'},{n:'Delta Lake',c:'streaming'},
+    {n:'AWS Glue',c:'cloud'},{n:'Amazon EMR',c:'cloud'},{n:'Redshift',c:'cloud'},{n:'Amazon S3',c:'cloud'},
+    {n:'Google BigQuery',c:'cloud'},{n:'Cloud Dataflow',c:'cloud'},{n:'Pub/Sub',c:'cloud'},{n:'Cloud Composer',c:'cloud'},
+    {n:'Azure Databricks',c:'cloud'},{n:'Azure Data Factory',c:'cloud'},{n:'Azure Synapse',c:'cloud'},{n:'ADLS Gen2',c:'cloud'},
+    {n:'Snowflake',c:'warehouse'},{n:'Snowpipe',c:'warehouse'},{n:'Snowpark',c:'warehouse'},{n:'Databricks',c:'warehouse'},
+    {n:'Apache Hive',c:'warehouse'},{n:'dbt',c:'warehouse'},
+    {n:'Apache Airflow',c:'orchestration'},{n:'Step Functions',c:'orchestration'},{n:'Terraform',c:'orchestration'},{n:'Docker',c:'orchestration'},{n:'Kubernetes',c:'orchestration'},{n:'Prefect',c:'orchestration'},
+    {n:'Claude AI',c:'ai'},{n:'RAG Systems',c:'ai'},{n:'LLM Integration',c:'ai'},{n:'ML Feature Stores',c:'ai'},{n:'MLflow',c:'ai'},{n:'Scikit-learn',c:'ai'},
+    {n:'Python',c:'languages'},{n:'PySpark',c:'languages'},{n:'SQL',c:'languages'},{n:'Scala',c:'languages'},{n:'React',c:'languages'},{n:'Bash / Shell',c:'languages'},
+  ]
+  const scene=document.getElementById('globeScene'),tagsEl=document.getElementById('globeTags'),legend=document.getElementById('globeLegend')
+  if(!scene||!tagsEl)return
+
+  // Fibonacci sphere — evenly distributes N points on unit sphere surface
+  const N=tags.length,PHI=(1+Math.sqrt(5))/2
+  tags.forEach((t,i)=>{
+    const cosA=1-(2*i+1)/N,sinA=Math.sqrt(Math.max(0,1-cosA*cosA)),th=2*Math.PI*i/PHI
+    t.ox=sinA*Math.cos(th);t.oy=sinA*Math.sin(th);t.oz=cosA
+    const el=document.createElement('span')
+    el.className='stag';el.textContent=t.n;el.style.color=CC[t.c]||'#94a3b8'
+    tagsEl.appendChild(el);t.el=el
   })
-}
-renderSk()
-document.getElementById('skSearch').addEventListener('input',e=>{
-  const a=document.querySelector('.fb.on')
-  renderSk(a?a.dataset.c:'all',e.target.value)
-})
-document.getElementById('filterRow').addEventListener('click',e=>{
-  if(!e.target.classList.contains('fb'))return
-  document.querySelectorAll('.fb').forEach(b=>b.classList.remove('on'))
-  e.target.classList.add('on')
-  renderSk(e.target.dataset.c,document.getElementById('skSearch').value)
-})
+
+  // Build legend
+  Object.entries(CC).forEach(([cat,col])=>{
+    const d=document.createElement('div');d.className='gl-item'
+    d.innerHTML=`<span class="gl-swatch" style="background:${col}"></span>${cat}`
+    legend.appendChild(d)
+  })
+
+  function hexRgb(h){return[parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)].join(',')}
+
+  const AUTO=0.004
+  let rotY=0,rotX=0.25,velY=AUTO,velX=0,dragging=false,lastMX=0,lastMY=0,active=false
+
+  function frame(){
+    const R=scene.offsetWidth*0.46
+    if(!dragging){
+      velY=velY*0.97+AUTO*0.03;velX*=0.92
+      rotY+=velY;rotX+=velX
+      rotX=Math.max(-1.0,Math.min(1.0,rotX))
+    }
+    const cx=Math.cos(rotX),sx=Math.sin(rotX),cy=Math.cos(rotY),sy=Math.sin(rotY)
+    tags.forEach(t=>{
+      // Rotate around Y then X
+      const x1=t.ox*cy+t.oz*sy,y1=t.oy,z1=-t.ox*sy+t.oz*cy
+      const x2=x1,y2=y1*cx-z1*sx,z2=y1*sx+z1*cx
+      const depth=(z2+1)/2  // 0=back 1=front
+      const scale=0.55+depth*0.9
+      const opacity=depth<0.3?0:(depth-0.3)/0.7
+      t.el.style.transform=`translate(calc(${x2*R}px - 50%), calc(${y2*R}px - 50%)) scale(${scale})`
+      t.el.style.opacity=opacity
+      t.el.style.zIndex=Math.round(depth*100)
+      const rgb=hexRgb(CC[t.c]||'#94a3b8')
+      if(depth>0.55){
+        const a=(depth-0.55)/0.45
+        t.el.style.background=`rgba(${rgb},${0.08+a*0.12})`
+        t.el.style.borderColor=`rgba(${rgb},${0.25+a*0.5})`
+        t.el.style.boxShadow=a>0.4?`0 0 ${6+a*16}px rgba(${rgb},${a*0.4}),inset 0 0 8px rgba(${rgb},0.06)`:'none'
+        t.el.style.textShadow=a>0.5?`0 0 ${a*10}px rgba(${rgb},${a*0.5})`:'none'
+      } else {
+        t.el.style.background='rgba(255,255,255,.02)';t.el.style.borderColor='rgba(255,255,255,.05)'
+        t.el.style.boxShadow='none';t.el.style.textShadow='none'
+      }
+    })
+    if(active)requestAnimationFrame(frame)
+  }
+
+  new IntersectionObserver(([e])=>{if(e.isIntersecting&&!active){active=true;frame()}},{threshold:0.2}).observe(scene)
+
+  function startDrag(x,y){dragging=true;lastMX=x;lastMY=y}
+  function moveDrag(x,y){
+    if(!dragging)return
+    const dx=x-lastMX,dy=y-lastMY
+    rotY+=dx*0.006;rotX+=dy*0.006
+    rotX=Math.max(-1.0,Math.min(1.0,rotX))
+    velY=dx*0.006;velX=dy*0.006
+    lastMX=x;lastMY=y
+  }
+  scene.addEventListener('mousedown',e=>startDrag(e.clientX,e.clientY))
+  window.addEventListener('mousemove',e=>moveDrag(e.clientX,e.clientY))
+  window.addEventListener('mouseup',()=>{dragging=false})
+  scene.addEventListener('touchstart',e=>{e.preventDefault();startDrag(e.touches[0].clientX,e.touches[0].clientY)},{passive:false})
+  window.addEventListener('touchmove',e=>moveDrag(e.touches[0].clientX,e.touches[0].clientY),{passive:true})
+  window.addEventListener('touchend',()=>{dragging=false})
+})()
 
 // AI
 const kb=[
